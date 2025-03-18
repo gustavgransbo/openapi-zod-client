@@ -196,6 +196,17 @@ export function getZodSchema({ schema: $schema, ctx, meta: inheritedMeta, option
             );
         }
 
+        if (schema.const) {
+            const value = schema.const;
+            let valueString = "";
+            if (schemaType === "string") {
+                valueString = value === null ? "null" : `"${value}"`;
+            } else {
+                valueString = value === null ? "null" : value;
+            }
+            return code.assign(`z.literal(${valueString})`);
+        }
+
         return code.assign(
             match(schemaType)
                 .with("integer", () => "z.number()")

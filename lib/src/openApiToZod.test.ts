@@ -293,6 +293,7 @@ test("getSchemaAsZodString", () => {
     );
     expect(getSchemaAsZodString({ type: "number", enum: [1] })).toMatchInlineSnapshot('"z.literal(1)"');
     expect(getSchemaAsZodString({ type: "string", enum: ["aString"] })).toMatchInlineSnapshot('"z.literal("aString")"');
+    expect(getSchemaAsZodString({ type: "string", const: "aString" })).toMatchInlineSnapshot('"z.literal("aString")"');
 });
 
 test("getSchemaWithChainableAsZodString", () => {
