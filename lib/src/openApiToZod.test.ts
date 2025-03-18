@@ -1,4 +1,4 @@
-import type { SchemaObject } from "openapi3-ts";
+import type { SchemaObject } from "openapi3-ts/oas31";
 import { expect, test } from "vitest";
 import { getZodSchema } from "./openApiToZod";
 import type { CodeMetaData, ConversionTypeContext } from "./CodeMeta";
@@ -296,13 +296,13 @@ test("getSchemaAsZodString", () => {
 });
 
 test("getSchemaWithChainableAsZodString", () => {
-    expect(getSchemaAsZodString({ type: "string", nullable: true })).toMatchInlineSnapshot('"z.string()"');
-    expect(getSchemaAsZodString({ type: "string", nullable: false })).toMatchInlineSnapshot('"z.string()"');
+    expect(getSchemaAsZodString({ type: ["string", "null"] })).toMatchInlineSnapshot('"z.string()"');
+    expect(getSchemaAsZodString({ type: "string" })).toMatchInlineSnapshot('"z.string()"');
 
-    expect(getSchemaAsZodString({ type: "string", nullable: false }, { isRequired: true })).toMatchInlineSnapshot(
+    expect(getSchemaAsZodString({ type: "string" }, { isRequired: true })).toMatchInlineSnapshot(
         '"z.string()"'
     );
-    expect(getSchemaAsZodString({ type: "string", nullable: true }, { isRequired: true })).toMatchInlineSnapshot(
+    expect(getSchemaAsZodString({ type: ["string", "null"] }, { isRequired: true })).toMatchInlineSnapshot(
         '"z.string()"'
     );
 });
