@@ -296,14 +296,14 @@ test("getSchemaAsZodString", () => {
 });
 
 test("getSchemaWithChainableAsZodString", () => {
-    expect(getSchemaAsZodString({ type: ["string", "null"] })).toMatchInlineSnapshot('"z.string()"');
+    expect(getSchemaAsZodString({ type: ["string", "null"] })).toMatchInlineSnapshot('"z.union([z.string(), z.null()])"');
     expect(getSchemaAsZodString({ type: "string" })).toMatchInlineSnapshot('"z.string()"');
 
     expect(getSchemaAsZodString({ type: "string" }, { isRequired: true })).toMatchInlineSnapshot(
         '"z.string()"'
     );
     expect(getSchemaAsZodString({ type: ["string", "null"] }, { isRequired: true })).toMatchInlineSnapshot(
-        '"z.string()"'
+        '"z.union([z.string(), z.null()])"'
     );
 });
 
