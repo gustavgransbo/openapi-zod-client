@@ -1,3 +1,13 @@
+> [!NOTE]
+> This fork implements support for the `const` feature of OpenAPI 3.1.
+> The fork has it's own npm repository: @gustavgransbo/openapi-zod-client.
+> Minimal steps to push a new fix to the forked npm repo:
+> 1. Add a code change
+> 2. Bump the version in `lib/package.json`
+> 3. Log into npm using `npm login`
+> 4. Run `pnpm release`
+
+
 [![npm version](https://img.shields.io/npm/v/openapi-zod-client.svg)](https://www.npmjs.com/package/openapi-zod-client)
 
 # openapi-zod-client
